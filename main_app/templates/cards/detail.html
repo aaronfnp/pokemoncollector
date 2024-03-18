@@ -53,9 +53,38 @@
       <div class="card-content">
         <span class="card-title"> {{ deck.name }} </span>
       </div>
+      <div class="card-action">
+        <form action="{% url 'unassoc_deck' card.id deck.id %}" method="POST">
+          {% csrf_token %}
+          <button type="submit" class="btn">REMOVE</button>
+        </form>
+      </div>
     </div>
     {% endfor %} {% else %}
     <h5>No Current Decks</h5>
+    {% endif %}
+  </div>
+  <div class="col s6">
+    <h3>Available Decks</h3>
+    {% if decks.count %}
+      {% for deck in decks.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+              {{ deck.name }}
+            </span>
+          </div>
+          <div class="card-action">
+            <form action="{% url 'assoc_deck' card.id deck.id %}" method="POST">
+                {% csrf_token %}
+              <button type="submit" class="btn">Add</button>
+            </form>
+          </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>{{card.name}} is in all current decks</h5>
     {% endif %}
   </div>
 </div>

@@ -10,5 +10,7 @@ urlpatterns = [
     path('cards/<int:pk>/update/', views.CardUpdate.as_view(), name='cards_update'),
     path('cards/<int:pk>/delete/', views.CardDelete.as_view(), name='cards_delete'),
     path('cards/<int:card_id>/add_priceupdate/', views.add_priceupdate, name='add_priceupdate'),
-    path('cards/<int:card_id>/assoc_deck/<int:deck_id>/', views.assoc_deck, name='assoc_toy')
+    path('cards/<int:card_id>/assoc_deck/<int:deck_id>/', views.assoc_deck, name='assoc_deck'),
+    path('cards/<int:card_id>/unassoc_deck/<int:deck_id>/', views.unassoc_deck, name='unassoc_deck')
+    
 ]

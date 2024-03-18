@@ -41,7 +41,7 @@ class Deck(models.Model):
     return self.name
 
   def get_absolute_url(self):
-    return reverse('decks', kwargs={'pk': self.id})
+    return reverse('decks_detail', kwargs={'pk': self.id})
 
 # Create your models here.
 class Card(models.Model):
