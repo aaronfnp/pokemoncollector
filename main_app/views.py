@@ -91,7 +91,7 @@ class CardCreate(CreateView):
 
 class CardUpdate(UpdateView):
     model = Card
-    fields = '__all__'
+    fields = ['name', 'number', 'rarity', 'set']
 
 class CardDelete(DeleteView):
     model = Card
