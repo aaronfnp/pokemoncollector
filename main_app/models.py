@@ -2,34 +2,34 @@ from django.db import models
 from django.urls import reverse
 
 RARITY = (
-    ("common", "C"),
-    ("uncommon", "U"),
-    ("rare", "R"),
-    ("double_rare", "RR"),
-    ("triple_rare", "RRR"),
-    ("super_rare", "SR"),
-    ("special_art", "SIR"),
-    ("hyper_rare", "HR"),
-    ("ultra_rare", "UR"),
-    ("shiny_super_rare", "SSR"),
-    ("shiny", "S"),
-    ("character_rare", "CHR"),
-    ("character_super_rare", "CSR"),
-    ("amazing_rare", "A"),
-    ("radiant_rare", "K"),
+    ("Common", "C"),
+    ("Uncommon", "U"),
+    ("Rare", "R"),
+    ("Double Rare", "RR"),
+    ("Triple Rare", "RRR"),
+    ("Super Rare", "SR"),
+    ("Special Art", "SIR"),
+    ("Hyper Rare", "HR"),
+    ("Ultra Rare", "UR"),
+    ("Shiny Super Rare", "SSR"),
+    ("Shiny", "S"),
+    ("Character Rare", "CHR"),
+    ("Character Super Rare", "CSR"),
+    ("Amazing Rare", "A"),
+    ("Radiant Rare", "K"),
 )
 
 GRADES = (
     ("UG", "Ungraded"),
-    ("01", "PSA 1"),
-    ("02", "PSA 2"),
-    ("03", "PSA 3"),
-    ("04", "PSA 4"),
-    ("05", "PSA 5"),
-    ("06", "PSA 6"),
-    ("07", "PSA 7"),
-    ("08", "PSA 8"),
-    ("09", "PSA 9"),
+    ("1", "PSA 1"),
+    ("2", "PSA 2"),
+    ("3", "PSA 3"),
+    ("4", "PSA 4"),
+    ("5", "PSA 5"),
+    ("6", "PSA 6"),
+    ("7", "PSA 7"),
+    ("8", "PSA 8"),
+    ("9", "PSA 9"),
     ("10", "PSA 10"),
 )
 
@@ -77,3 +77,10 @@ class PriceUpdate(models.Model):
 #   def __str__(self):
 #     # Nice method for obtaining the friendly value of a Field.choice
 #     return f"{self.get_priceupdate_display()} on {self.date}"
+  
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    card = models.ForeignKey(Card, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Photo for card_id: {self.card_id} @{self.url}"
