@@ -3,7 +3,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django import forms
 from .forms import PriceUpdateForm
 
-from .models import Card
+from .models import Card, Deck
 
 def home(request):
     return render(request, 'home.html')
@@ -31,9 +31,13 @@ def add_priceupdate(request, card_id):
         new_priceupdate.save()
     return redirect('detail', card_id=card_id)
 
+def assoc_deck(request, card_id, deck_id):
+    Card.objects.get(id=card_id).decks.add(deck_id)
+    return redirect('detail', card_id=card_id)
+
 class CardCreate(CreateView):
     model = Card
-    fields = '__all__'
+    fields = ['name', 'number', 'rarity', 'set']
     success_url = '/cards'
 
 class CardUpdate(UpdateView):

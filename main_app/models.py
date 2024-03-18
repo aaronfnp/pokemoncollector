@@ -33,6 +33,16 @@ GRADES = (
     ("10", "PSA 10"),
 )
 
+class Deck(models.Model):
+  name = models.CharField(max_length=50)
+  description = models.TextField(max_length=250)
+
+  def __str__(self):
+    return self.name
+
+  def get_absolute_url(self):
+    return reverse('decks', kwargs={'pk': self.id})
+
 # Create your models here.
 class Card(models.Model):
     name = models.CharField(max_length=100)
@@ -43,11 +53,10 @@ class Card(models.Model):
         default=RARITY[0][0]
         )
     set = models.CharField(max_length=100)
-    price_ungraded = models.IntegerField()
-    price_psa10 = models.IntegerField()
     image_url = models.URLField(
         default="https://commondatastorage.googleapis.com/images.pricecharting.com/refe27360bddc90f3ff8beb22b1a6fe2e243ad1ce704e20972a6af8b48aaadede8c/240.jpg"
     )
+    decks = models.ManyToManyField(Deck)
 
     def __str__(self):
         return self.name
